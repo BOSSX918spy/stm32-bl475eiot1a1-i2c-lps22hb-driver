@@ -1,0 +1,58 @@
+# I²C Multi-Sensor Bus Design
+
+## Overview
+This project uses the I²C bus to interface the LPS22HB barometric pressure
+sensor on the STM32 B-L475E-IOT01A Discovery board. The same I²C bus is shared
+with other on-board sensors, demonstrating a realistic multi-device bus
+topology.
+
+---
+
+## Bus Topology
+- Bus type: I²C (two-wire)
+- Master: STM32L475 MCU
+- Slaves:
+  - LPS22HB (Pressure sensor)
+  - HTS221 (Temperature & Humidity sensor)
+- Lines:
+  - SCL: PB8
+  - SDA: PB9
+
+---
+
+## Electrical Characteristics
+- I²C lines are open-drain
+- Pull-up resistors are provided on-board
+- No external pull-ups are required
+
+---
+
+## Addressing
+Each sensor on the bus has a unique 7-bit address, allowing multiple devices
+to coexist on the same physical bus without conflict.
+
+The BSP layer abstracts device addressing and transaction sequencing.
+
+---
+
+## Clock Speed
+- Bus operates in Standard Mode (100 kHz)
+- Suitable for low-bandwidth environmental sensing
+- Reduces EMI and power consumption
+
+---
+
+## Arbitration and Reliability
+- Only one master is present
+- Clock stretching may occur internally
+- HAL and BSP layers handle NACK and retry conditions
+
+---
+
+## Design Rationale
+Using a shared I²C bus:
+- Minimizes pin usage
+- Enables sensor scalability
+- Reflects real embedded system design constraints
+
+This configuration mirrors production IoT and sensor-hub architectures.

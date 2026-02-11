@@ -1,0 +1,2 @@
+../Core/Src/lps22hb_driver.c:11:6:LPS22HB_Init	2
+../Core/Src/lps22hb_driver.c:19:6:LPS22HB_Read	2
