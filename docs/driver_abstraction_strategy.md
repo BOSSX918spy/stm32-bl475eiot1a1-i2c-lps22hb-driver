@@ -11,7 +11,7 @@ The firmware stack is structured as:
 
 Application → LPS22HB Driver → BSP → HAL → Hardware
 
-Each layer has a clearly defined responsibility.
+Each layer has a clearly defined responsibility. 
 
 ---
 
